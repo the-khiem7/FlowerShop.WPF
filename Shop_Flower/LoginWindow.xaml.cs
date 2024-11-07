@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Shop_Flower.DAL.Entities;
+using Shop_Flower.DAL.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +21,26 @@ namespace Shop_Flower
     /// </summary>
     public partial class Window1 : Window
     {
+        private readonly UserRepository _userRepository;
         public Window1()
         {
             InitializeComponent();
+            _userRepository = new UserRepository();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
+            String username = Username_txt.Text.Trim();
+            String password = Password_txt.Text.Trim();
+            User user = _userRepository.getUserbyUsernameAndPassword(username, password);
+            if (user != null)
+            {
 
+            }
+            else 
+            {
+                MessageBox.Show("Invalid Username or Password !!!")
+            }
         }
     }
 }
