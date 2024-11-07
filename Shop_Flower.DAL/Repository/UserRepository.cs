@@ -46,5 +46,9 @@ namespace Shop_Flower.DAL.Repository
                 _users.Remove(user);
             }
         }
+        public User getUserbyUsernameAndPassword(string username, string password)
+        {
+            return _users.FirstOrDefault(c => c.Username == username && c.Password == password); 
+        }
     }
 }
