@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop_Flower.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop_Flower.DAL.Repository
 {
-<<<<<<< Updated upstream
-    internal class OrderRepository
-    {
-=======
+
     public class OrderRepository : IOrderRepository
 {
     private readonly ShopContext _context;
@@ -45,6 +43,6 @@ namespace Shop_Flower.DAL.Repository
     {
         _context.Orders.Update(order);
         _context.SaveChanges();
->>>>>>> Stashed changes
+
     }
 }
