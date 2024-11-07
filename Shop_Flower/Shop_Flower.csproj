@@ -9,9 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="flower.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Shop_Flower.BLL\Shop_Flower.BLL.csproj">
       <Private>True</Private>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="flower.jpg" />
   </ItemGroup>
 
   <ItemGroup>
