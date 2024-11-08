@@ -1,27 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shop_Flower.BLL.Services;
+using Shop_Flower.DAL.Entities;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Shop_Flower
 {
     /// <summary>
-    /// Interaction logic for OrderWindows.xaml
+    /// Interaction logic for OrderWindow.xaml
     /// </summary>
-    public partial class OrderWindows : Window
+    public partial class OrderWindow : Window
     {
-        public OrderWindows()
+        private readonly OrderServices _orderServices;
+
+        public OrderWindow(OrderServices orderServices, int orderId)
         {
             InitializeComponent();
+            _orderServices = orderServices;
+            LoadOrderData(orderId);
+        }
+
+        private void LoadOrderData(int orderId)
+        {
+            Order order = _orderServices.GetOrder(orderId);
+            if (order != null)
+            {
+                OrderIdTextBlock.Text = order.OrderId.ToString();
+                UserIdTextBlock.Text = order.UserId?.ToString();
+                PhoneNumberTextBlock.Text = order.PhoneNumber;
+                PaymentMethodTextBlock.Text = order.PaymentMethod;
+                DeliveryMethodTextBlock.Text = order.DeliveryMethod;
+                CreatedDateTextBlock.Text = order.CreatedDate?.ToString("g");
+                AddressIdTextBlock.Text = order.AddressId;
+                TotalPriceTextBlock.Text = order.TotalPrice?.ToString("C");
+            }
         }
     }
 }
