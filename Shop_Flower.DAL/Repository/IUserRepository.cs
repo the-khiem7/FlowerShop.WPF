@@ -14,5 +14,6 @@ namespace Shop_Flower.DAL.Repository
         void AddUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int id);
+        User getUserbyUsernameAndPassword(string username, string password);
     }
 }
