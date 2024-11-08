@@ -7,7 +7,7 @@ using Shop_Flower.DAL.Entities;
 using Shop_Flower.DAL.Repository;
 namespace Shop_Flower.BLL.Services
 {
-    internal class FlowerInfoService
+    public class FlowerInfoService : IFlowerInfoService
     {
         private readonly FlowerInfoRepository _flowerInfoRepository;
         public FlowerInfoService(FlowerInfoRepository flowerInfoRepository)
