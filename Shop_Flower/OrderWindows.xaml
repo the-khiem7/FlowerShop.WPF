@@ -23,34 +23,33 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
+        <Grid.Background>
+            <ImageBrush ImageSource="/flower.jpg"/>
+        </Grid.Background>
         <TextBlock Text="Order Information" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="5"/>
 
-        <TextBlock Text="Order ID:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="OrderIdTextBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="Order ID:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Background="AliceBlue" />
+        <TextBlock x:Name="OrderIdTextBlock" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
         <TextBlock Text="User ID:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="UserIdTextBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+        <TextBlock x:Name="UserIdTextBlock" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
         <TextBlock Text="Phone Number:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="PhoneNumberTextBox" Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <TextBlock x:Name="PhoneNumberTextBlock" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
         <TextBlock Text="Payment Method:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="PaymentMethodTextBox" Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <TextBlock x:Name="PaymentMethodTextBlock" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
         <TextBlock Text="Delivery Method:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="DeliveryMethodTextBox" Grid.Row="5" Grid.Column="1" Margin="5"/>
+        <TextBlock x:Name="DeliveryMethodTextBlock" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
         <TextBlock Text="Created Date:" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
-        <DatePicker x:Name="CreatedDatePicker" Grid.Row="6" Grid.Column="1" Margin="5"/>
+        <TextBlock x:Name="CreatedDateTextBlock" Grid.Row="6" Grid.Column="1" Margin="5"/>
 
         <TextBlock Text="Address ID:" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="AddressIdTextBox" Grid.Row="7" Grid.Column="1" Margin="5"/>
+        <TextBlock x:Name="AddressIdTextBlock" Grid.Row="7" Grid.Column="1" Margin="5"/>
 
         <TextBlock Text="Total Price:" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="TotalPriceTextBox" Grid.Row="8" Grid.Column="1" Margin="5"/>
-
-        <Button Content="Save" Grid.Row="9" Grid.Column="0" Margin="5" Click="SaveButton_Click"/>
-        <Button Content="Cancel" Grid.Row="9" Grid.Column="1" Margin="5" Click="CancelButton_Click"/>
+        <TextBlock x:Name="TotalPriceTextBlock" Grid.Row="8" Grid.Column="1" Margin="5"/>
     </Grid>
 </Window>

@@ -12,9 +12,9 @@ namespace Shop_Flower.BLL
     {
         private readonly IUserRepository _userRepository;
 
-        public UserService()
+        public UserService(UserRepository userRepository)
         {
-            _userRepository = new UserRepository();
+            _userRepository = userRepository;
         }
 
         public User GetUserById(int id)
