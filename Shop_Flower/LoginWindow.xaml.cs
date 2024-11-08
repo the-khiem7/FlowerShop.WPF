@@ -39,8 +39,13 @@ namespace Shop_Flower
             }
             else 
             {
-                MessageBox.Show("Invalid Username or Password !!!")
+                MessageBox.Show("Invalid Username or Password !!!");
             }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
