@@ -7,7 +7,7 @@ using Shop_Flower.DAL.Entities;
 using Shop_Flower.DAL.Repository;
 namespace Shop_Flower.BLL.Services
 {
-    internal interface IFlowerInfoService
+    public interface IFlowerInfoService
     {
         List<FlowerInfo> GetAllFlowers();
         FlowerInfo GetFlower(int id);

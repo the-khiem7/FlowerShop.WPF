@@ -1,0 +1,28 @@
+﻿<Window x:Class="Shop_Flower.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Admin - Manage Flowers" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Add Flower" Click="AddFlower_Click" Margin="5"/>
+            <Button Content="Update Flower" Click="UpdateFlower_Click" Margin="5"/>
+            <Button Content="Delete Flower" Click="DeleteFlower_Click" Margin="5"/>
+        </StackPanel>
+        
+        <DataGrid x:Name="FlowerDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding FlowerId}" Width="50"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding FlowerName}" Width="150"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding FlowerDescription}" Width="200"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding AvailableQuantity}" Width="100"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding Category.CategoryName}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
