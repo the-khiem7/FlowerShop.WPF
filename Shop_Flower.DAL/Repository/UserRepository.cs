@@ -9,21 +9,27 @@ namespace Shop_Flower.DAL.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly List<User> _users = new List<User>();
+        private readonly ShopContext _context;
 
-        public User GetUserById(int id)
+        public UserRepository(ShopContext context)
         {
-            return _users.FirstOrDefault(u => u.UserId == id);
+            _context = context;
+        }
+
+        public User? GetUserById(int id)
+        {
+            return _context.Users.FirstOrDefault(u => u.UserId == id);
         }
 
         public IEnumerable<User> GetAllUsers()
         {
-            return _users;
+            return _context.Users.ToList();
         }
 
         public void AddUser(User user)
         {
-            _users.Add(user);
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
 
         public void UpdateUser(User user)
@@ -35,6 +41,7 @@ namespace Shop_Flower.DAL.Repository
                 existingUser.Password = user.Password;
                 existingUser.Email = user.Email;
                 existingUser.Role = user.Role;
+                _context.SaveChanges();
             }
         }
 
@@ -43,12 +50,14 @@ namespace Shop_Flower.DAL.Repository
             var user = GetUserById(id);
             if (user != null)
             {
-                _users.Remove(user);
+                _context.Users.Remove(user);
+                _context.SaveChanges();
             }
         }
-        public User getUserbyUsernameAndPassword(string username, string password)
+
+        public User? getUserbyUsernameAndPassword(string username, string password)
         {
-            return _users.FirstOrDefault(c => c.Username == username && c.Password == password); 
+            return _context.Users.FirstOrDefault(c => c.Username == username && c.Password == password);
         }
     }
 }
