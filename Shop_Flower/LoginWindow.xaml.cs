@@ -22,18 +22,18 @@ namespace Shop_Flower
     /// </summary>
     public partial class Window1 : Window
     {
-        private readonly UserService _userService;
-        public Window1(UserService userService)
+        private readonly UserRepository _userRepository;
+        public Window1(UserRepository userRepository)
         {
             InitializeComponent();
-            _userService = userService;
+            _userRepository = userRepository;
         }
 
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
-            String username = Username_txt.Text.Trim();
+            String email = Username_txt.Text.Trim();
             String password = Password_txt.Text.Trim();
-            User user = _userService.getUserbyUsernameAndPassword(username, password);
+            User user = _userRepository.getUserbyEmailAndPassword(email, password);
             if (user != null)
             {
 
@@ -44,9 +44,6 @@ namespace Shop_Flower
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
