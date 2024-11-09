@@ -9,5 +9,7 @@ namespace Shop_Flower.BLL
         void AddUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int id);
+
+        User getUserbyEmailAndPassword(string email, string password);
     }
 }
