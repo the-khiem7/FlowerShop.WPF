@@ -27,14 +27,14 @@ namespace Shop_Flower
     {
         private readonly UserService _userService;
 
+     
         public Window1()
         {
             InitializeComponent();
-        }
-        public Window1(UserService userService)
-        {
-            InitializeComponent();
-            _userService = userService;
+            var context = new ShopContext();
+            _userService = new UserService(new UserRepository(context));
+
+          
         }
 
         private void Login_btn_Click(object sender, RoutedEventArgs e)
@@ -46,15 +46,14 @@ namespace Shop_Flower
             {
                 if (user.Role == 1)
                 {
-                    AdminWindow adminWindow = new AdminWindow();
-                    adminWindow.Show();
+                    AdminManagementWindow adminManagementWindow = new AdminManagementWindow();
+                    adminManagementWindow.Show();
                     this.Close();
                 }
                 if (user.Role == 2) {
                     FlowerInfoRepository flowerInfoRepository = new FlowerInfoRepository(new ShopContext());
                     FlowerInfoService flowerInfoService = new FlowerInfoService(flowerInfoRepository);
                    
-
 
                     UserWindow userWindow = new UserWindow();
                     userWindow.Show();

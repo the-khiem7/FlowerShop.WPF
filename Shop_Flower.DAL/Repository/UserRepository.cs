@@ -55,7 +55,7 @@ namespace Shop_Flower.DAL.Repository
             }
         }
 
-        public User? getUserbyEmailAndPassword(string email, string password)
+        public User getUserbyEmailAndPassword(string email, string password)
         {
             return _context.Users.FirstOrDefault(c => c.Email == email && c.Password == password);
         }
