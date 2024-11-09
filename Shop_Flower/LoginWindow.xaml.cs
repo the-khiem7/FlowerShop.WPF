@@ -23,6 +23,11 @@ namespace Shop_Flower
     public partial class Window1 : Window
     {
         private readonly UserService _userService;
+
+        public Window1()
+        {
+
+        }
         public Window1(UserService userService)
         {
             InitializeComponent();
@@ -36,7 +41,18 @@ namespace Shop_Flower
             User user = _userService.getUserbyUsernameAndPassword(username, password);
             if (user != null)
             {
-
+                if (user.Role == 1)
+                {
+                    AdminWindow adminWindow = new AdminWindow();
+                    adminWindow.Show();
+                    this.Close();
+                }
+                if (user.Role == 2) { 
+                    UserWindow userWindow = new UserWindow();
+                    userWindow.Show();
+                    this.Close();
+                
+                }
             }
             else
             {

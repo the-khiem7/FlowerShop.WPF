@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shop_Flower"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
+        Title="Window1" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="52*"/>
@@ -20,8 +20,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="219,85,0,0" TextWrapping="Wrap" Text="LOGIN PAGE" VerticalAlignment="Top" FontSize="36" FontFamily="Arial Black" Grid.Column="3"/>
         <TextBlock HorizontalAlignment="Left" Margin="196,155,0,0" TextWrapping="Wrap" Text="USERNAME : " VerticalAlignment="Top" FontSize="16" Grid.Column="3" FontFamily="Arial Black"/>
         <TextBlock HorizontalAlignment="Left" Margin="196,217,0,0" TextWrapping="Wrap" Text="PASSWORD : " VerticalAlignment="Top" FontSize="16" Grid.Column="3" FontFamily="Arial Black"/>
-        <TextBox x:Name="Username_txt" HorizontalAlignment="Left" Margin="196,181,0,0" TextWrapping="Wrap" Text="Enter Username" VerticalAlignment="Top" Width="292" Height="31" Grid.Column="3"/>
-        <TextBox x:Name="Password_txt" HorizontalAlignment="Left" Margin="196,243,0,0" TextWrapping="Wrap" Text="Enter Password" VerticalAlignment="Top" Width="292" Height="31" TextChanged="TextBox_TextChanged" Grid.Column="3"/>
+        <TextBox x:Name="Username_txt" HorizontalAlignment="Left" Margin="196,181,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="292" Height="31" Grid.Column="3"/>
+        <TextBox x:Name="Password_txt" HorizontalAlignment="Left" Margin="196,243,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="292" Height="31" TextChanged="TextBox_TextChanged" Grid.Column="3"/>
         <Button x:Name="Login_btn" Grid.Column="3" Content="LOGIN" HorizontalAlignment="Left" Margin="293,297,0,0" VerticalAlignment="Top" Height="35" Width="98" FontSize="18" FontFamily="Arial Black" Click="Login_btn_Click"/>
 
     </Grid>

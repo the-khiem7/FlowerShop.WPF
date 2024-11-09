@@ -11,8 +11,8 @@ namespace Shop_Flower.BLL.Services
     {
         List<Order> GetAllOrders();
         Order GetOrder(int id);
-        void AddOrder(Order room);
-        void UpdateOrder(Order room);
-        void DeleteOrder(int roomId);
+        void AddOrder(Order order);
+        void UpdateOrder(Order order);
+        void DeleteOrder(int orderId);
     }
 }

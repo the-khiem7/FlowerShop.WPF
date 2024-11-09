@@ -16,7 +16,7 @@ namespace Shop_Flower.BLL.Services
         }
         public List<FlowerInfo> GetAllFlowers()
         {
-            return _flowerInfoRepository.GetAllFlowers();
+            return _flowerInfoRepository.GetAllWithCategory().ToList();
         }
         public FlowerInfo GetFlower(int id)
         {

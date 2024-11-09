@@ -22,9 +22,9 @@ namespace Shop_Flower.DAL.Repository
         }
         public Order GetOrder(int id)
         {
-            {
+            
                 return _context.Orders.FirstOrDefault(Order => Order.OrderId == id);
-            }
+            
         }
         public void AddOrder(Order order)
         {
