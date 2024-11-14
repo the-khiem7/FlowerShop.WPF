@@ -71,5 +71,10 @@ namespace Shop_Flower
         {
 
         }
+
+        private void Username_txt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
