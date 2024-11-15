@@ -41,7 +41,7 @@ namespace Shop_Flower.BLL
         {
             _userRepository.DeleteUser(id);
         }
-        public User getUserbyEmailAndPassword(string email, string password) 
+        public User getUserbyEmailAndPassword(string email, string password)
         {
             return _userRepository.getUserbyEmailAndPassword(email, password);
         }

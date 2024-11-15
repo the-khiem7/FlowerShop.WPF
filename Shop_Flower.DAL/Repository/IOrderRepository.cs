@@ -9,12 +9,13 @@ namespace Shop_Flower.DAL.Repository
 {
 
     public interface IOrderRepository
-{
-    List<Order> GetAllOrders();
-    Order GetOrder(int id);
-    void AddOrder(Order room);
-    void UpdateOrder(Order room);
-    void DeleteOrder(int roomId);
-}
+    {
+        List<Order> GetAllOrders();
+        Order GetOrder(int id);
+        void AddOrder(Order order);
+        void UpdateOrder(Order order);
+        void DeleteOrder(int orderId);
+        List<Order> GetOrdersByUserId(int userId); 
+    }
 
 }

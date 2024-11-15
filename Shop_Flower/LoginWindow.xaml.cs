@@ -1,4 +1,6 @@
 ﻿using Shop_Flower.BLL;
+using Shop_Flower.BLL.Services;
+using Shop_Flower.DAL;
 using Shop_Flower.DAL.Entities;
 using Shop_Flower.DAL.Repository;
 using System;
@@ -14,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Shop_Flower
 {
@@ -22,21 +25,41 @@ namespace Shop_Flower
     /// </summary>
     public partial class Window1 : Window
     {
-        private readonly UserRepository _userRepository;
-        public Window1(UserRepository userRepository)
+        private readonly UserService _userService;
+
+     
+        public Window1()
         {
             InitializeComponent();
-            _userRepository = userRepository;
+            var context = new ShopContext();
+            _userService = new UserService(new UserRepository(context));
+
+          
         }
 
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
             String email = Username_txt.Text.Trim();
             String password = Password_txt.Text.Trim();
-            User user = _userRepository.getUserbyEmailAndPassword(email, password);
+            User user = _userService.getUserbyEmailAndPassword(email, password);
             if (user != null)
             {
+                if (user.Role == 1)
+                {
+                    AdminManagementWindow adminManagementWindow = new AdminManagementWindow();
+                    adminManagementWindow.Show();
+                    this.Close();
+                }
+                if (user.Role == 2) {
+                    FlowerInfoRepository flowerInfoRepository = new FlowerInfoRepository(new ShopContext());
+                    FlowerInfoService flowerInfoService = new FlowerInfoService(flowerInfoRepository);
+                   
 
+                    UserWindow userWindow = new UserWindow();
+                    userWindow.Show();
+                    this.Close();
+                
+                }
             }
             else
             {

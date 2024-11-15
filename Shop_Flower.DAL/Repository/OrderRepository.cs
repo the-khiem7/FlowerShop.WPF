@@ -22,9 +22,9 @@ namespace Shop_Flower.DAL.Repository
         }
         public Order GetOrder(int id)
         {
-            {
+            
                 return _context.Orders.FirstOrDefault(Order => Order.OrderId == id);
-            }
+            
         }
         public void AddOrder(Order order)
         {
@@ -44,7 +44,10 @@ namespace Shop_Flower.DAL.Repository
         {
             _context.Orders.Update(order);
             _context.SaveChanges();
-
+        }
+        public List<Order> GetOrdersByUserId(int userId)
+        {
+            return _context.Orders.Where(order => order.UserId == userId).ToList();
         }
     }
 }
