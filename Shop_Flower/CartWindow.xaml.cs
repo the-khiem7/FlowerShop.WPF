@@ -55,5 +55,43 @@ namespace Shop_Flower
             _cartService.ClearCart();
             LoadCart();
         }
+
+        private void IncreaseQuantityButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CartDataGrid.SelectedItem is CartItem selectedItem)
+            {
+                int selectedIndex = CartDataGrid.SelectedIndex;
+                selectedItem.Quantity++;
+                LoadCart();
+                CartDataGrid.SelectedIndex = selectedIndex;
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to increase quantity.");
+            }
+        }
+
+        private void DecreaseQuantityButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CartDataGrid.SelectedItem is CartItem selectedItem)
+            {
+                if (selectedItem.Quantity > 1)
+                {
+                    int selectedIndex = CartDataGrid.SelectedIndex;
+                    selectedItem.Quantity--;
+                    LoadCart();
+                    CartDataGrid.SelectedIndex = selectedIndex;
+                }
+                else
+                { 
+                    _cartService.RemoveFromCart(selectedItem.FlowerId);
+                     LoadCart();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to decrease quantity.");
+            }
+        }
     }
 }

@@ -71,10 +71,6 @@ namespace Shop_Flower
                     Quantity = 1
                 };
                 _cartService.AddToCart(item);
-
-                _totalPrice += selectedFlower.Price;
-                UpdateTotalPrice();
-
                 MessageBox.Show($"{selectedFlower.FlowerName} đã được thêm vào giỏ hàng.");
             }
         }
