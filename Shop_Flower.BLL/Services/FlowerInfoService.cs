@@ -34,5 +34,14 @@ namespace Shop_Flower.BLL.Services
         {
             _flowerInfoRepository.DeleteFlower(flowerId);
         }
+        public void UpdateFlowerQuantity(int flowerId, int newQuantity)
+        {
+            var flower = _flowerInfoRepository.GetFlower(flowerId);
+            if (flower != null)
+            {
+                flower.AvailableQuantity = newQuantity;
+                _flowerInfoRepository.UpdateFlower(flower);
+            }
+        }
     }
 }

@@ -10,31 +10,32 @@ namespace Shop_Flower
 {
     public partial class OrderWindow : Window
     {
-       
+        private readonly int _userId;
         private readonly decimal _totalPrice;
         private readonly OrderServices _orderServices;
 
+        // Modified constructor to include UserId
         public OrderWindow(int userId, decimal totalPrice)
         {
             InitializeComponent();
-            
+
+            _userId = userId;
             _totalPrice = totalPrice;
             TotalPriceTextBlock.Text = _totalPrice.ToString("C");
 
-            // Khởi tạo OrderServices để lưu đơn hàng
             var context = new ShopContext();
             _orderServices = new OrderServices(new OrderRepository(context));
         }
 
         private void ConfirmOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            // Lấy thông tin từ các trường nhập liệu
+
             string phoneNumber = PhoneNumberTextBox.Text;
             string paymentMethod = (PaymentMethodComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
             string deliveryMethod = (DeliveryMethodComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
             string addressId = AddressIdTextBox.Text;
 
-            // Kiểm tra các trường nhập liệu
+  
             if (string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(paymentMethod) ||
                 string.IsNullOrWhiteSpace(deliveryMethod) || string.IsNullOrWhiteSpace(addressId))
             {
@@ -42,10 +43,10 @@ namespace Shop_Flower
                 return;
             }
 
-            // Tạo đối tượng Order và lưu vào cơ sở dữ liệu
+ 
             var newOrder = new Order
             {
-               
+                UserId = _userId,
                 PhoneNumber = phoneNumber,
                 PaymentMethod = paymentMethod,
                 DeliveryMethod = deliveryMethod,
@@ -62,7 +63,10 @@ namespace Shop_Flower
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving order: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error saving order: " + ex.Message + "\n\nInner Exception: " + ex.InnerException?.Message,
+                     "Error",
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Error);
             }
         }
     }

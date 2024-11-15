@@ -50,15 +50,15 @@ namespace Shop_Flower
                     adminManagementWindow.Show();
                     this.Close();
                 }
-                if (user.Role == 2) {
+                else if (user.Role == 2)
+                {
                     FlowerInfoRepository flowerInfoRepository = new FlowerInfoRepository(new ShopContext());
                     FlowerInfoService flowerInfoService = new FlowerInfoService(flowerInfoRepository);
-                   
 
-                    UserWindow userWindow = new UserWindow();
+                    // Truyền UserId sang UserWindow
+                    UserWindow userWindow = new UserWindow(user.UserId); // Truyền UserId tại đây
                     userWindow.Show();
                     this.Close();
-                
                 }
             }
             else

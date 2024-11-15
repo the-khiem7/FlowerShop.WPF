@@ -17,17 +17,18 @@ namespace Shop_Flower
         private readonly int _userId; // Đảm bảo UserId được truyền vào
         private decimal _totalPrice = 0;
 
-        public UserWindow() // Nhận UserId khi khởi tạo
+        public UserWindow(int userId)
         {
             InitializeComponent();
-        
+            _userId = userId; 
+
             var context = new ShopContext();
             _flowerInfoService = new FlowerInfoService(new FlowerInfoRepository(context));
             LoadFlowers();
             UpdateTotalPrice();
         }
 
-       
+
 
         private void LoadFlowers()
         {
@@ -57,10 +58,25 @@ namespace Shop_Flower
         {
             if (sender is Button button && button.DataContext is FlowerInfo selectedFlower)
             {
-                _totalPrice += selectedFlower.Price;
-                UpdateTotalPrice();
+                if (selectedFlower.AvailableQuantity > 0)
+                {
+                    
+                    int newQuantity = selectedFlower.AvailableQuantity - 1;
+                    _flowerInfoService.UpdateFlowerQuantity(selectedFlower.FlowerId, newQuantity);
 
-                MessageBox.Show($"{selectedFlower.FlowerName} đã được thêm vào giỏ hàng.");
+                    
+                    _totalPrice += selectedFlower.Price;
+                    UpdateTotalPrice();
+
+                  
+                    MessageBox.Show($"{selectedFlower.FlowerName} đã được thêm vào giỏ hàng.");
+
+                    LoadFlowers();
+                }
+                else
+                {
+                    MessageBox.Show($"Hoa {selectedFlower.FlowerName} đã hết hàng.");
+                }
             }
         }
 
@@ -71,10 +87,9 @@ namespace Shop_Flower
 
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
-            // Truyền UserId và TotalPrice vào OrderWindow
+
             var orderWindow = new OrderWindow(_userId, _totalPrice);
-            orderWindow.Show();
-            this.Close();
+            orderWindow.ShowDialog();
         }
     }
 }
