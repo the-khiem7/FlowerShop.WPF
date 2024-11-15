@@ -14,5 +14,6 @@ namespace Shop_Flower.BLL.Services
         void AddFlower(FlowerInfo flower);
         void UpdateFlower(FlowerInfo flower);
         void DeleteFlower(int flowerId);
+        public List<FlowerInfo> SearchFlower(string search);
     }
 }

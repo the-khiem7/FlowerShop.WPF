@@ -1,6 +1,11 @@
 ﻿using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Shop_Flower.BLL;
 using Shop_Flower.BLL.Services;
 using Shop_Flower.DAL;
 using Shop_Flower.DAL.Repository;
@@ -11,21 +16,49 @@ namespace Shop_Flower
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        private readonly IServiceProvider _serviceProvider;
+
+        public App()
         {
-            base.OnStartup(e);
+            var services = new ServiceCollection();
 
-            // Create necessary dependencies
-            var context = new ShopContext();
-            var flowerInfoRepository = new FlowerInfoRepository(context);
-            var flowerInfoService = new FlowerInfoService(flowerInfoRepository);
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
 
-            // Create and configure AdminWindow
-            var adminWindow = new AdminWindow();
-            adminWindow.SetFlowerInfoService(flowerInfoService);
+            services.AddDbContext<ShopContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("Shop")));
 
-            // Show the window
-            adminWindow.Show();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IFlowerInfoRepository, FlowerInfoRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IOrderServices, OrderServices>();
+            services.AddTransient<IFlowerInfoService, FlowerInfoService>();
+            services.AddTransient<IUserService, UserService>();
+
+            services.AddTransient<ICartService,CartService>();
+            services.AddTransient<ICartRepository, CartRepository>();
+
+            services.AddTransient<OrderHistoryWindow>();
+            services.AddTransient<CartWindow>();
+
+            services.AddTransient<IOrderServices, OrderServices>();
+            services.AddTransient<FlowerProductListing>();
+
+            services.AddTransient<AdminManagementWindow>();
+            services.AddTransient<AdminWindow>();
+            services.AddTransient<Window1>();
+            services.AddTransient<ManagementCategoryWindow>();
+            services.AddTransient<ManagementOrderWindow>();
+            services.AddTransient<ManagementCategoryWindow>();
+            services.AddTransient<UserWindow>();
+            services.AddTransient<OrderWindow>();
+
+            _serviceProvider = services.BuildServiceProvider();
         }
     }
 

@@ -16,7 +16,7 @@ namespace Shop_Flower.BLL.Services
         }
         public List<FlowerInfo> GetAllFlowers()
         {
-            return _flowerInfoRepository.GetAllFlowers();
+            return _flowerInfoRepository.GetAllWithCategory().ToList();
         }
         public FlowerInfo GetFlower(int id)
         {
@@ -33,6 +33,28 @@ namespace Shop_Flower.BLL.Services
         public void DeleteFlower(int flowerId)
         {
             _flowerInfoRepository.DeleteFlower(flowerId);
+        }
+        public void UpdateFlowerQuantity(int flowerId, int newQuantity)
+        {
+            var flower = _flowerInfoRepository.GetFlower(flowerId);
+            if (flower != null)
+            {
+                flower.AvailableQuantity = newQuantity;
+                _flowerInfoRepository.UpdateFlower(flower);
+            }
+        }
+        public List<FlowerInfo> SearchFlower(string search)
+        {
+            List<FlowerInfo> result = _flowerInfoRepository.GetAllWithCategory();
+            if (string.IsNullOrEmpty(search))
+            {
+                return result;
+            }
+            if (!string.IsNullOrEmpty(search))
+            {
+                result = result.Where(f => f.FlowerName.ToLower().Contains(search.ToLower().Trim())).ToList();
+            }
+            return result;
         }
     }
 }

@@ -35,5 +35,9 @@ namespace Shop_Flower.BLL.Services
         {
             _orderRepository.AddOrder(order);
         }
+        public List<Order> GetOrdersByUserId(int userId)
+        {
+            return _orderRepository.GetOrdersByUserId(userId);
+        }
     }
 }

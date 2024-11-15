@@ -1,0 +1,23 @@
+﻿<Window x:Class="Shop_Flower.AdminManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shop_Flower"
+        mc:Ignorable="d"
+        Title="AdminManagementWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="HotPink">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/flower.jpg"/>
+        </Grid.Background>
+        <Rectangle HorizontalAlignment="Center" Height="257" Stroke="Black" VerticalAlignment="Center" Width="638" Fill="Pink" RadiusX="30" RadiusY="30"/>
+        <Label Content="Admin Flower Shop Management" HorizontalAlignment="Left" Margin="118,10,0,0" VerticalAlignment="Top" Width="638" FontSize="30" Height="50" FontStyle="Italic" FontFamily="Arial" FontStretch="UltraExpanded" FontWeight="UltraBold" Foreground="HotPink"/>
+        <Button Content="Manage Category" HorizontalAlignment="Center" Margin="0,116,0,0" VerticalAlignment="Top" Height="33" Width="134" Background="AntiqueWhite" FontFamily="Arial" Click="ManageCategory_Click" FontWeight="Bold"/>
+        <Button Content="Manage Flowers" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="134" Background="AntiqueWhite" FontFamily="Arial" Click="ManageFlowers_Click" FontWeight="Bold" Margin="0,168,0,0"/>
+        <Button Content="Manage Orders" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="31" Width="134" Background="AntiqueWhite" FontFamily="Arial" Click="ManageOrders_Click" FontWeight="Bold"/>
+        <Button Content="Manage Users" HorizontalAlignment="Center" Margin="0,273,0,0" VerticalAlignment="Top" Height="31" Width="134" Background="AntiqueWhite" FontFamily="Arial" Click="ManageUsers_Click" FontWeight="Bold"/>
+        <Button Content="Logout" HorizontalAlignment="Left" Margin="677,386,0,0" VerticalAlignment="Top" Background="AntiqueWhite" FontSize="15" RenderTransformOrigin="-0.67,0.453" Click="Logout_Click" FontWeight="ExtraBlack"/>
+
+
+    </Grid>
+</Window>
