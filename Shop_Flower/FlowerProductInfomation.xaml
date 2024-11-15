@@ -37,7 +37,8 @@
 
         <Border.Background>
             <ImageBrush ImageSource="https://gardenofedenflowershop.com/cdn/shop/articles/goe-blog-hawaii.jpg?v=1624370925"
-                        Stretch="Fill"/>
+                        Stretch="Fill"
+                        Opacity="0.4"/>
         </Border.Background>
 
         <Border CornerRadius="10"                    
