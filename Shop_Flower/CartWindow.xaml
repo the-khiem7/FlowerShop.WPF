@@ -5,34 +5,241 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shop_Flower"
         mc:Ignorable="d"
-        Title="CartWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="CartWindow"  WindowStyle="None" WindowStartupLocation="CenterScreen" Height="450" Width="800">
+    <Border CornerRadius="12">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <Grid.Background>
-            <ImageBrush ImageSource="/flower.jpg"/>
-        </Grid.Background>
-        
-        <DataGrid x:Name="CartDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Margin="10,0,10,200">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Flower Name" Binding="{Binding FlowerName}" Width="*"/>
-                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <!--Hình nền-->
+        <Border.Background>
+            <ImageBrush ImageSource="https://gardenofedenflowershop.com/cdn/shop/articles/goe-blog-hawaii.jpg?v=1624370925"
+                        Stretch="Fill"/>
+        </Border.Background>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left">
-            <TextBlock Text="Total Price:" VerticalAlignment="Center" FontSize="16"/>
-            <TextBlock x:Name="TotalPriceTextBlock" Text="0.00" Margin="10,0,15,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-            <Button x:Name="RemoveFromCartButton" Content="Remove Item" Click="RemoveFromCartButton_Click"/> 
-            <Button x:Name="ClearCartButton" Content="Clear Cart" Click="ClearCartButton_Click" Margin="10,0,0,0"/>
-            <Button x:Name="Additem" Content="Add item" Click="IncreaseQuantityButton_Click" Margin="10,0,0,0"/>
-            <Button x:Name="Decreaseitem" Content="Decrease item" Click="DecreaseQuantityButton_Click" Margin="10,0,0,0"/>
-        </StackPanel>
-    </Grid>
+        <Border CornerRadius="10"                    
+            BorderThickness="2"
+            Opacity="0.95">
+
+            <!--#region FirstLayer App -->
+            <!--Viền app-->
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <!--Nền Gradient app-->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="AliceBlue" Offset="0"/>
+                    <GradientStop Color="AntiqueWhite" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <DataGrid x:Name="CartDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Margin="10,0,10,200">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="SizeToCells" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ImageUrl}" Stretch="None"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Flower Name" Binding="{Binding FlowerName}" Width="*"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"/>
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left">
+                    <TextBlock Text="Total Price:" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBlock x:Name="TotalPriceTextBlock" Text="0.00" Margin="10,0,15,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                    <Button
+                                                x:Name="RemoveFromCartButton"
+                                                BorderThickness="0"
+                                                Content="Remove an Item"
+                                                Foreground="White"
+                                                FontSize="12"
+                                                VerticalAlignment="Center"
+                                                Margin="10,0,10,0"
+                                                Click="RemoveFromCartButton_Click"
+                                                CommandParameter="{Binding FlowerId}"
+                                                Width="100"
+                                                Height="30"
+                                                Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="YellowGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100" Height="25"
+                                                             CornerRadius="9"
+                                                             Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                                              HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                    <Button
+                                                x:Name="ClearCartButton"
+                                                BorderThickness="0"
+                                                Content="Clear Cart"
+                                                Foreground="White"
+                                                FontSize="12"
+                                                VerticalAlignment="Center"
+                                                Margin="10,0,10,0"
+                                                Click="ClearCartButton_Click"
+                                                CommandParameter="{Binding FlowerId}"
+                                                Width="100"
+                                                Height="30"
+                                                Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="YellowGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100" Height="25"
+                                                             CornerRadius="9"
+                                                             Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                                              HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                    <Button
+                                                x:Name="Additem"
+                                                BorderThickness="0"
+                                                Content="Add item"
+                                                Foreground="White"
+                                                FontSize="12"
+                                                VerticalAlignment="Center"
+                                                Margin="10,0,10,0"
+                                                Click="IncreaseQuantityButton_Click"
+                                                CommandParameter="{Binding FlowerId}"
+                                                Width="100"
+                                                Height="30"
+                                                Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="YellowGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100" Height="25"
+                                                             CornerRadius="9"
+                                                             Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                                              HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                    <Button
+                                                x:Name="DecreseItem"
+                                                BorderThickness="0"
+                                                Content="Decrese item"
+                                                Foreground="White"
+                                                FontSize="12"
+                                                VerticalAlignment="Center"
+                                                Margin="10,0,10,0"
+                                                Click="DecreaseQuantityButton_Click"
+                                                CommandParameter="{Binding FlowerId}"
+                                                Width="100"
+                                                Height="30"
+                                                Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="YellowGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100" Height="25"
+                                                             CornerRadius="9"
+                                                             Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                                              HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button
+                                                x:Name="GotoOder"
+                                                BorderThickness="0"
+                                                Content="Goto Order ➡️"
+                                                Foreground="White"
+                                                FontSize="12"
+                                                VerticalAlignment="Center"
+                                                Margin="40,0,10,0"
+                                                Click="OrderButton_Click"
+                                                CommandParameter="{Binding FlowerId}"
+                                                Width="100"
+                                                Height="30"
+                                                Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Green"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="YellowGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100" Height="25"
+                                                             CornerRadius="9"
+                                                             Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                                              HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Border>
 </Window>

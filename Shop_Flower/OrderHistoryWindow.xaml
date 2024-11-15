@@ -27,6 +27,6 @@
         <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}" Width="*"/>
     </DataGrid.Columns>
 </DataGrid>
-        <Label Content="Order History" HorizontalAlignment="Center" Margin="0,34,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold"  FontSize="40" Foreground="Red"/>
+        <Label Content="Order History" HorizontalAlignment="Center" Margin="0,34,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold"  FontSize="40" Foreground="Pink"/>
     </Grid>
 </Window>
