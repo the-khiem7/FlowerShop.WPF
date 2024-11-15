@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Shop_Flower"
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="Montserrat">/Shop_Flower;component/Font/Montserrat.ttf#Montserrat</FontFamily>
     </Application.Resources>
 </Application>

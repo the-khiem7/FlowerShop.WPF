@@ -16,21 +16,25 @@ namespace Shop_Flower.DAL.Repository
         {
             _context = context;
         }
+
         public List<Order> GetAllOrders()
         {
             return _context.Orders.ToList();
         }
+        
         public Order GetOrder(int id)
         {
             
                 return _context.Orders.FirstOrDefault(Order => Order.OrderId == id);
             
         }
+        
         public void AddOrder(Order order)
         {
             _context.Orders.Add(order);
             _context.SaveChanges();
         }
+        
         public void DeleteOrder(int id)
         {
             var OrderDeleted = _context.Orders.Find(id);
@@ -40,6 +44,7 @@ namespace Shop_Flower.DAL.Repository
             }
             _context.SaveChanges();
         }
+        
         public void UpdateOrder(Order order)
         {
             _context.Orders.Update(order);
