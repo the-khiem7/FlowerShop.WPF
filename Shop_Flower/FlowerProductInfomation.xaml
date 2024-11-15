@@ -13,8 +13,28 @@
         AllowsTransparency="True">
 
 
+    <Window.Resources>
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="CadetBlue"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        <Style x:Key="Content" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+    </Window.Resources>
+    
+    
     <Border CornerRadius="12">
-
+        
         <Border.Background>
             <ImageBrush ImageSource="https://gardenofedenflowershop.com/cdn/shop/articles/goe-blog-hawaii.jpg?v=1624370925"
                         Stretch="Fill"/>
@@ -48,7 +68,7 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <!--#region NavBar -->
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
@@ -91,84 +111,39 @@
                         </Button.Template>
                     </Button>
                 </Grid>
-                    <!--#endregion-->
+                <!--#endregion-->
 
                 <!--#region Body -->
                 <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="320"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <Grid Grid.Column="0">
-                        <DockPanel
-                               x:Name="FlowerImage_DockPanel"
-                               Height="340"
-                               Width="280"
-                               HorizontalAlignment="Left"
-                               Margin="20,0,20,40">
-                            <Border 
-                                CornerRadius="10"
-                                BorderThickness="1.6" BorderBrush="Gray">
-                                <Border.Background>
-                                    <ImageBrush Stretch="Fill" ImageSource="{Binding ImageUrl, UpdateSourceTrigger=PropertyChanged}"/>
-                                </Border.Background>
-                            </Border>
-                        </DockPanel>
-                    </Grid>
-
-                    <Grid Grid.Column="1">
-
-
+                    <Grid>
+                        
                         <ListBox x:Name="FlowerInfoListing"
                                  HorizontalAlignment="Center"
-                                 VerticalAlignment="Center" 
-                                 HorizontalContentAlignment="Center"
-                                 VerticalContentAlignment="Center"
-                                 Height="340"
-                                 Width="450"
-                                 Margin="0,10,0,50" 
+                                 VerticalAlignment="Top" 
+                                 Height="408"
+                                 Width="800"
                                  Background="Transparent"
-                                 BorderBrush="Blue"
+                                 IsEnabled="False"
                                  ItemsSource="{Binding FlowerDetails}" 
                                  d:ItemsSource="{d:SampleData ItemCount=1}">
 
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
+
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width='200'/>
-                                            <ColumnDefinition Width='200'/>
+                                            <ColumnDefinition Width="440"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="190"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Grid Grid.Column="1">
-
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="20"/>
-                                                <RowDefinition Height="50"/>
-                                                <RowDefinition Height="50"/>
-                                                <RowDefinition Height="50"/>
-                                                <RowDefinition Height="50"/>
-                                                <RowDefinition Height="50"/>
-                                                <RowDefinition Height="50"/>
-                                            </Grid.RowDefinitions>
-
-                                            <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding FlowerName}" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Row="2" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding FlowerDescription}" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Row="3" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Row="4" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding AvailableQuantity}" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Row="5" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Category.CategoryName}" VerticalAlignment="Center"/>
-
-                                        </Grid>
-
+                                        <!--#region FlowerPicture -->
                                         <Grid Grid.Column="0">
-
-                                            <DockPanel 
-                                            Height="340"
-                                            Width="280"
-                                            HorizontalAlignment="Left"
-                                            Margin="20,0,20,40">
+                                            <DockPanel
+                                                x:Name="FlowerImage_DockPanel"
+                                                Height="380"
+                                                Width="400"
+                                                Margin="20,10,20,10">
                                                 <Border 
                                                 CornerRadius="10"
                                                 BorderThickness="1.6" BorderBrush="Gray">
@@ -177,22 +152,63 @@
                                                     </Border.Background>
                                                 </Border>
                                             </DockPanel>
+                                        </Grid>
+                                        <!--#endregion-->
+
+                                        <!--#region FlowerDetailTitle -->
+                                        <Grid Grid.Column="1">
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="70"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="70"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Style="{StaticResource Title}" Grid.Row="1" Margin="0,10,0,0" Text="FlowerName:" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Title}" Grid.Row="2" Margin="0,10,0,0" Text="Description:" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Title}" Grid.Row="3" Margin="0,10,0,0" Text="Price:" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Title}" Grid.Row="4" Margin="0,10,0,0" Text="Quantity:" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Title}" Grid.Row="5" Margin="0,10,0,0" Text="Category:" VerticalAlignment="Center"/>
 
                                         </Grid>
+                                        <!--#endregion-->
+
+                                        <!--#region FlowerDetailData -->
+                                        <Grid Grid.Column="2">
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="70"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="70"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Style="{StaticResource Content}" Grid.Row="1" Margin="0,10,0,0" Text="{Binding FlowerName}" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Content}" Grid.Row="2" Margin="0,10,0,0" Text="{Binding FlowerDescription}" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Content}" Grid.Row="3" Margin="0,10,0,0" Text="{Binding Price}" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Content}" Grid.Row="4" Margin="0,10,0,0" Text="{Binding AvailableQuantity}" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Content}" Grid.Row="5" Margin="0,10,0,0" Text="{Binding Category.CategoryName}" VerticalAlignment="Center"/>
+
+                                        </Grid>
+                                        <!--#endregion-->
+
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
+                        
                     </Grid>
-
-
-                    <TextBlock FontSize="16" FontWeight="DemiBold" HorizontalAlignment="Center" Foreground="Black" Text="{Binding FlowerId, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 </Grid>
                 <!--#endregion-->
 
             </Grid>
-
-
         </Border>
     </Border>
 </Window>
