@@ -11,17 +11,17 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">
-    
-    
-    <!--Convert String từ Database thành Url local--> 
+
+
+    <!--Convert String từ Database thành Url local-->
     <!--<Window.Resources>
         <local:PhotoUriConverter x:Key="PhotoUriConverter"/>
     </Window.Resources>-->
 
-    
-    
-    
-    
+
+
+
+
     <!--Bo màn hình app-->
     <Border CornerRadius="12">
 
@@ -56,7 +56,7 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
@@ -66,23 +66,65 @@
                 <Grid Grid.Row="0">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
 
-                    <!--#region Tên app -->
-                    <TextBlock Text="FLOWERSHOP"
-                               Foreground="DarkGray"
-                               FontSize="10"
-                               FontFamily="Montserrat"
-                               Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Margin="10,0,0,0"/>
+                    <!--#region Logout -->
+                    <Button x:Name="btnLogout"
+                            BorderThickness="0"
+                            Content="LOGOUT"
+                            Foreground="White"
+                            FontSize="18"
+                            FontFamily="{StaticResource Montserrat}"
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            Margin="10,0,10,2" Click="btnLogout_Click">
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="25"
+                                        CornerRadius="15"
+                                        Background="#DA34AE"
+                                        Margin="0,0,0,0">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <!--#endregion-->
 
+                    <!--#region Category -->
+                    <Button x:Name="btnCategory"
+                            BorderThickness="0"
+                            Content="CATEGORY"
+                            Foreground="White"
+                            FontSize="18"
+                            FontFamily="{StaticResource Montserrat}"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            Margin="10,0,10,2" Click="btnCategory_Click">
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="25"
+                                        CornerRadius="15"
+                                        Background="#DA34AE"
+                                        Margin="0,0,0,0">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <!--#endregion-->
+                    
                     <!--#region Đi đến giỏ hàng -->
                     <Button x:Name="btnMyOrder"
                             BorderThickness="0"
@@ -90,9 +132,9 @@
                             Foreground="White"
                             FontSize="18"
                             FontFamily="{StaticResource Montserrat}"
-                            Grid.Column="1"
+                            Grid.Column="3"
                             VerticalAlignment="Center"
-                            Margin="10,0,10,0" Click="btnMyOrder_Click">
+                            Margin="10,0,10,2" Click="btnMyOrder_Click">
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -116,7 +158,7 @@
                             FontSize="16"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Grid.Column="2"
+                            Grid.Column="4"
                             Click="btnMinimize_Click">
 
                         <Button.Style>
@@ -152,7 +194,7 @@
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Grid.Column="3"
+                            Grid.Column="5"
                             Click="btnClose_Click">
 
                         <Button.Style>
@@ -182,8 +224,16 @@
 
 
                 <!--LÊN DANH SÁCH SẢN PHẨM-->
-                <ScrollViewer Background="Transparent" Margin="5" Grid.Row="1">
-                    <ListView x:Name="FlowerProductList" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ScrollViewer Background="Transparent" Margin="5" Grid.Row="1"
+                              CanContentScroll="True"
+                              PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                    <ListView x:Name="FlowerProductList" 
+                              ItemsSource="{Binding Products}" 
+                              SelectedItem="{Binding SelectedProduct}" 
+                              ScrollViewer.CanContentScroll="True" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                              BorderThickness="0" Background="Transparent" 
+                              d:ItemsSource="{d:SampleData ItemCount=6}">
                         <ListView.ItemTemplate>
                             <!--Khởi tạo panel-->
                             <DataTemplate>
@@ -223,8 +273,11 @@
                                                 <TextBlock FontSize="15" Margin="0 0 0 0" TextAlignment="Center" Width="90" Foreground="Black" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged,StringFormat=\{0\}$}" />
                                             </DockPanel>
 
-                                            <!--#region Flower Detail -->
-                                            <Button
+
+                                            <DockPanel HorizontalAlignment="Center" Margin="0,10,0,0">
+
+                                                <!--#region Flower Detail -->
+                                                <Button
                                                 x:Name="btnFlowerDetail"
                                                 BorderThickness="0"
                                                 Content="Flower Detail"
@@ -232,36 +285,78 @@
                                                 FontSize="12"
                                                 FontFamily="{StaticResource Montserrat}"
                                                 VerticalAlignment="Center"
-                                                Margin="0,10,0,0"
+                                                Margin="10,0,10,0"
+                                                Click="btnFlowerDetail_Click"
+                                                CommandParameter="{Binding FlowerId}"
+                                                Width="100"
+                                                Height="30"
+                                                Background="#DA34AE"
+                                                Cursor="Hand">
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
+                                                            <Setter Property="Background" Value="#DA34AE"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#C62DAE"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Width="100" Height="25"
+                                                             CornerRadius="9"
+                                                             Background="{TemplateBinding Background}">
+                                                                <ContentPresenter VerticalAlignment="Center"
+                                                                              HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                                <!--#endregion-->
+
+                                                <!--#region Order Flower -->
+                                                <Button
+                                                x:Name="btnOrderFlower"
+                                                BorderThickness="0"
+                                                Content="Order Flower"
+                                                Foreground="White"
+                                                FontSize="12"
+                                                FontFamily="{StaticResource Montserrat}"
+                                                VerticalAlignment="Center"
+                                                Margin="10,0,10,0"
                                                 Click="btnFlowerDetail_Click"
                                                 CommandParameter="{Binding flower_id}"
                                                 Width="100"
                                                 Height="30"
                                                 Background="#DA34AE"
                                                 Cursor="Hand">
-                                                <Button.Style>
-                                                    <Style TargetType="Button">
-                                                        <Setter Property="Background" Value="#DA34AE"/>
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#C62DAE"/>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Button.Style>
-                                                <Button.Template>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border Width="100" Height="25"
-                                                             CornerRadius="9"
-                                                             Background="{TemplateBinding Background}">
-                                                            <ContentPresenter VerticalAlignment="Center"
-                                                                              HorizontalAlignment="Center"/>
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Button.Template>
-                                            </Button>
-                                            <!--#endregion-->
-                                            
+
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
+                                                            <Setter Property="Background" Value="#DA34AE"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#C62DAE"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Width="100" Height="25"
+                                                            CornerRadius="9"
+                                                            Background="{TemplateBinding Background}">
+                                                                <ContentPresenter VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                                <!--#endregion-->
+
+                                            </DockPanel>
+
                                         </StackPanel>
                                     </StackPanel>
                                 </Border>

@@ -23,6 +23,7 @@ namespace Shop_Flower
         private readonly FlowerInfoService _flowerInfoService;
         private List<FlowerInfo> _flowerList;
         private readonly int _userId;
+        private int _totalPrice = 0;
         public FlowerProductListing()
         {
             InitializeComponent();
@@ -48,10 +49,44 @@ namespace Shop_Flower
 
         private void btnFlowerDetail_Click(object sender, RoutedEventArgs e)
         {
-
+            if(sender is Button button && button.DataContext is FlowerInfo selectedFlower)
+            {
+                FlowerProductInfomation flowerProductInfomation = new FlowerProductInfomation(selectedFlower.FlowerId);
+                flowerProductInfomation.ShowDialog();
+            }
         }
 
         private void btnMyOrder_Click(object sender, RoutedEventArgs e)
+        {
+            OrderWindow orderWindow = new OrderWindow(_userId, _totalPrice);
+            orderWindow.Show();
+        }
+
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)sender;
+            if (scrollViewer != null)
+            {
+                if (e.Delta > 0)
+                {
+                    scrollViewer.LineUp();
+                }
+                else
+                {
+                    scrollViewer.LineDown();
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 window1 = new Window1();
+            window1.Show();
+            this.Close();
+        }
+
+        private void btnCategory_Click(object sender, RoutedEventArgs e)
         {
 
         }
