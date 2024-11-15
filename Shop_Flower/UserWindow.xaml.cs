@@ -69,6 +69,7 @@ namespace Shop_Flower
                     FlowerId = selectedFlower.FlowerId,
                     FlowerName = selectedFlower.FlowerName,
                     Price = selectedFlower.Price,
+                    ImageUrl = selectedFlower.ImageUrl,
                     Quantity = 1
                 };
                 _cartService.AddToCart(item);
