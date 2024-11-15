@@ -14,5 +14,6 @@ namespace Shop_Flower.BLL.Services
         void AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(int orderId);
+        List<Order> GetOrdersByUserId(int userId); 
     }
 }

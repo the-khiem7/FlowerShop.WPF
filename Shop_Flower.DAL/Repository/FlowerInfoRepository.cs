@@ -14,10 +14,10 @@ namespace Shop_Flower.DAL.Repository
             _context = context;
         }
 
-      
+
         public List<FlowerInfo> GetAllFlowers()
         {
-            return _context.FlowerInfos.Include(f => f.Category).ToList(); 
+            return _context.FlowerInfos.Include(f => f.Category).ToList();
         }
 
         public List<FlowerInfo> GetAllWithCategory()
@@ -27,8 +27,7 @@ namespace Shop_Flower.DAL.Repository
 
         public FlowerInfo GetFlower(int id)
         {
-            return _context.FlowerInfos.Include(f => f.Category)
-                                      .FirstOrDefault(f => f.FlowerId == id);
+            return _context.FlowerInfos.Include(f => f.Category).FirstOrDefault(f => f.FlowerId == id);
         }
 
         public void AddFlower(FlowerInfo flower)

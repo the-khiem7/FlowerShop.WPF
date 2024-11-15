@@ -14,20 +14,19 @@ namespace Shop_Flower
     {
         private readonly FlowerInfoService _flowerInfoService;
         private List<FlowerInfo> _flowerList;
-        private readonly int _userId; // Đảm bảo UserId được truyền vào
+        private int _userId; // Đảm bảo UserId được truyền vào
         private decimal _totalPrice = 0;
-
+        private readonly ICartService _cartService;
         public UserWindow() // Nhận UserId khi khởi tạo
         {
             InitializeComponent();
-        
+
             var context = new ShopContext();
             _flowerInfoService = new FlowerInfoService(new FlowerInfoRepository(context));
+            _cartService = new CartService(new CartRepository());
             LoadFlowers();
             UpdateTotalPrice();
         }
-
-       
 
         private void LoadFlowers()
         {
@@ -52,14 +51,26 @@ namespace Shop_Flower
                 LoadFlowers();
             }
         }
+        private void OpenCartButton_Click(object sender, RoutedEventArgs e)
+        {
+            var cartWindow = new CartWindow(_cartService);
+            cartWindow.Show();
+        }
+
 
         private void AddToCartButton_Click(object sender, RoutedEventArgs e)
         {
+
             if (sender is Button button && button.DataContext is FlowerInfo selectedFlower)
             {
-                _totalPrice += selectedFlower.Price;
-                UpdateTotalPrice();
-
+                var item = new CartItem
+                {
+                    FlowerId = selectedFlower.FlowerId,
+                    FlowerName = selectedFlower.FlowerName,
+                    Price = selectedFlower.Price,
+                    Quantity = 1
+                };
+                _cartService.AddToCart(item);
                 MessageBox.Show($"{selectedFlower.FlowerName} đã được thêm vào giỏ hàng.");
             }
         }
@@ -76,5 +87,12 @@ namespace Shop_Flower
             orderWindow.Show();
             this.Close();
         }
+        private void OpenOrderHistory_Click(object sender, RoutedEventArgs e)
+        {
+           
+            var orderHistoryWindow = new OrderHistoryWindow(_userId);
+            orderHistoryWindow.Show();
+        }
+
     }
 }

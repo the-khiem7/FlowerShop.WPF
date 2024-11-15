@@ -49,7 +49,10 @@ namespace Shop_Flower.DAL.Repository
         {
             _context.Orders.Update(order);
             _context.SaveChanges();
-
+        }
+        public List<Order> GetOrdersByUserId(int userId)
+        {
+            return _context.Orders.Where(order => order.UserId == userId).ToList();
         }
     }
 }

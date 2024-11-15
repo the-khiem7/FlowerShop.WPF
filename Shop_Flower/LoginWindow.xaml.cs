@@ -27,14 +27,14 @@ namespace Shop_Flower
     {
         private readonly UserService _userService;
 
-     
+
         public Window1()
         {
             InitializeComponent();
             var context = new ShopContext();
             _userService = new UserService(new UserRepository(context));
 
-          
+
         }
 
         private void Login_btn_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace Shop_Flower
                     FlowerProductListing flowerProductListing = new FlowerProductListing(user.UserId);
                     flowerProductListing.Show();
                     this.Close();
-                
+
                 }
             }
             else
@@ -67,9 +67,14 @@ namespace Shop_Flower
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
+            WindowState = WindowState.Minimized;
+        }
 
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         private void Username_txt_TextChanged(object sender, TextChangedEventArgs e)
