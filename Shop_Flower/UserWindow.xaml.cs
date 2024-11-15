@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.VisualBasic.ApplicationServices;
 using Shop_Flower.BLL;
 using Shop_Flower.BLL.Services;
 using Shop_Flower.DAL;
@@ -53,7 +54,7 @@ namespace Shop_Flower
         }
         private void OpenCartButton_Click(object sender, RoutedEventArgs e)
         {
-            var cartWindow = new CartWindow(_cartService);
+            var cartWindow = new CartWindow(_cartService, _userId, _totalPrice);
             cartWindow.Show();
         }
 

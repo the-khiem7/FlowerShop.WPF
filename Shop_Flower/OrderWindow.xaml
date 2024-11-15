@@ -40,7 +40,7 @@
         </ComboBox>
 
         <!-- Address ID -->
-        <TextBlock Text="Address ID:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" FontSize="14"/>
+        <TextBlock Text="Address:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" FontSize="14"/>
         <TextBox x:Name="AddressIdTextBox" Grid.Row="4" Grid.Column="1" Margin="5" Width="200" FontSize="14"/>
 
         <!-- Total Price -->
