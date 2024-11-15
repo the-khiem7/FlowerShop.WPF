@@ -91,7 +91,7 @@ namespace Shop_Flower
 
         private void btnMyCart_Click(object sender, RoutedEventArgs e)
         {
-            var cartWindow = new CartWindow(_cartService);
+            var cartWindow = new CartWindow(_cartService,_userId,_totalPrice);
             cartWindow.Show();
         }
 
@@ -104,6 +104,7 @@ namespace Shop_Flower
                     FlowerId = selectedFlower.FlowerId,
                     FlowerName = selectedFlower.FlowerName,
                     Price = selectedFlower.Price,
+                    ImageUrl = selectedFlower.ImageUrl,
                     Quantity = 1
                 };
                 _cartService.AddToCart(item);

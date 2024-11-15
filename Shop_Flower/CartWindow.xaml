@@ -36,6 +36,7 @@
                 </LinearGradientBrush>
             </Border.Background>
             <Grid>
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -43,12 +44,12 @@
                 </Grid.RowDefinitions>
 
 
-                <DataGrid x:Name="CartDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Margin="10,0,10,200">
+                <DataGrid x:Name="CartDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Margin="10,5,10,10">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Width="SizeToCells" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding ImageUrl}" Stretch="None"/>
+                                    <Image MaxWidth="100" MaxHeight="100" Source="{Binding ImageUrl}" Stretch="Fill"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -239,6 +240,74 @@
                     </Button>
 
                 </StackPanel>
+                <!--#region Nút Thu nhỏ App -->
+                <Button x:Name="btnMinimize"                           
+BorderThickness="0"
+Content="-"
+Foreground="White"
+FontSize="16"
+FontFamily="Montserrat"
+Cursor="Hand"
+Click="btnMinimize_Click" Margin="715,5,50,5">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#28AEED"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#278BEF"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18"
+            CornerRadius="9"
+            Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                          HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+                <!--#endregion-->
+
+                <!--#region Đóng app -->
+                <Button x:Name="btnClose"                          
+BorderThickness="0"
+Content="X"
+Foreground="White"
+FontSize="12"
+FontFamily="Montserrat"
+Cursor="Hand"
+Click="btnClose_Click" Height="26" VerticalAlignment="Top" Margin="750,5,15,5">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#DA34AE"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#C62DAE"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18"
+            CornerRadius="9"
+            Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                          HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
             </Grid>
         </Border>
     </Border>

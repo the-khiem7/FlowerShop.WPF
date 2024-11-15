@@ -26,7 +26,7 @@ namespace Shop_Flower
         private int _userId;
         private decimal _totalPrice;
 
-        public CartWindow(ICartService cartService ,int userid, decimal totalPrice)
+        public CartWindow(ICartService cartService, int userid, decimal totalPrice)
         {
             InitializeComponent();
             _cartService = cartService;
@@ -40,6 +40,15 @@ namespace Shop_Flower
             CartDataGrid.ItemsSource = null;
             CartDataGrid.ItemsSource = _cartService.GetCart().Items;
             TotalPriceTextBlock.Text = _cartService.GetCart().TotalPrice.ToString("C");
+        }
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         private void RemoveFromCartButton_Click(object sender, RoutedEventArgs e)
@@ -88,9 +97,9 @@ namespace Shop_Flower
                     CartDataGrid.SelectedIndex = selectedIndex;
                 }
                 else
-                { 
+                {
                     _cartService.RemoveFromCart(selectedItem.FlowerId);
-                     LoadCart();
+                    LoadCart();
                 }
             }
             else
@@ -100,7 +109,7 @@ namespace Shop_Flower
         }
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
-            var orderWindow = new OrderWindow(_userId,_totalPrice);
+            var orderWindow = new OrderWindow(_userId, _totalPrice);
             orderWindow.Show();
             Close();
         }
