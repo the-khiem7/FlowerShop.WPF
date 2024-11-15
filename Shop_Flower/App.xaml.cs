@@ -39,11 +39,16 @@ namespace Shop_Flower
             services.AddTransient<IOrderServices, OrderServices>();
             services.AddTransient<IFlowerInfoService, FlowerInfoService>();
             services.AddTransient<IUserService, UserService>();
+
             services.AddTransient<ICartService,CartService>();
             services.AddTransient<ICartRepository, CartRepository>();
 
             services.AddTransient<OrderHistoryWindow>();
             services.AddTransient<CartWindow>();
+
+            services.AddTransient<IOrderServices, OrderServices>();
+            services.AddTransient<FlowerProductListing>();
+
             services.AddTransient<AdminManagementWindow>();
             services.AddTransient<AdminWindow>();
             services.AddTransient<Window1>();

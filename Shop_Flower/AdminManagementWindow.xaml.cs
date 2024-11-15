@@ -29,7 +29,6 @@ namespace Shop_Flower
             Window1 window1 = new Window1();
             window1.Show();
             this.Close();
-           
         }
 
         private void ManageCategory_Click(object sender, RoutedEventArgs e)
