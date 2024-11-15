@@ -126,15 +126,15 @@
                     <!--#endregion-->
                     
                     <!--#region Đi đến giỏ hàng -->
-                    <Button x:Name="btnMyOrder"
+                    <Button x:Name="btnMyCart"
                             BorderThickness="0"
-                            Content="MY ORDER"
+                            Content="MY CART"
                             Foreground="White"
                             FontSize="18"
                             FontFamily="{StaticResource Montserrat}"
                             Grid.Column="3"
                             VerticalAlignment="Center"
-                            Margin="10,0,10,2" Click="btnMyOrder_Click">
+                            Margin="10,0,10,2" Click="btnMyCart_Click">
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -315,22 +315,21 @@
                                                 </Button>
                                                 <!--#endregion-->
 
-                                                <!--#region Order Flower -->
+                                                <!--#region Add Flower To Cart-->
                                                 <Button
-                                                x:Name="btnOrderFlower"
+                                                x:Name="btnAddToCart"
                                                 BorderThickness="0"
-                                                Content="Order Flower"
+                                                Content="Add to cart"
                                                 Foreground="White"
                                                 FontSize="12"
                                                 FontFamily="{StaticResource Montserrat}"
                                                 VerticalAlignment="Center"
                                                 Margin="10,0,10,0"
-                                                Click="btnFlowerDetail_Click"
                                                 CommandParameter="{Binding flower_id}"
                                                 Width="100"
                                                 Height="30"
                                                 Background="#DA34AE"
-                                                Cursor="Hand">
+                                                Cursor="Hand" Click="btnAddToCart_Click">
 
                                                     <Button.Style>
                                                         <Style TargetType="Button">

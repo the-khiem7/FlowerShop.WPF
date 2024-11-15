@@ -20,12 +20,14 @@ namespace Shop_Flower
 {
     public partial class FlowerProductListing : Window
     {
+        private readonly ICartService _cartService;
         private readonly FlowerInfoService _flowerInfoService;
         private List<FlowerInfo> _flowerList;
         private readonly int _userId;
         private int _totalPrice = 0;
         public FlowerProductListing()
         {
+            _cartService = new CartService(new CartRepository());
             InitializeComponent();
             var context = new ShopContext();
             _flowerInfoService = new FlowerInfoService(new FlowerInfoRepository(context));
@@ -56,12 +58,6 @@ namespace Shop_Flower
             }
         }
 
-        private void btnMyOrder_Click(object sender, RoutedEventArgs e)
-        {
-            OrderWindow orderWindow = new OrderWindow(_userId, _totalPrice);
-            orderWindow.Show();
-        }
-
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             ScrollViewer scrollViewer = (ScrollViewer)sender;
@@ -89,6 +85,28 @@ namespace Shop_Flower
         private void btnCategory_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnMyCart_Click(object sender, RoutedEventArgs e)
+        {
+            var cartWindow = new CartWindow(_cartService);
+            cartWindow.Show();
+        }
+
+        private void btnAddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.DataContext is FlowerInfo selectedFlower)
+            {
+                var item = new CartItem
+                {
+                    FlowerId = selectedFlower.FlowerId,
+                    FlowerName = selectedFlower.FlowerName,
+                    Price = selectedFlower.Price,
+                    Quantity = 1
+                };
+                _cartService.AddToCart(item);
+                MessageBox.Show($"{selectedFlower.FlowerName} đã được thêm vào giỏ hàng.");
+            }
         }
     }
 }
