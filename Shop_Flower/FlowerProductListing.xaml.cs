@@ -25,8 +25,9 @@ namespace Shop_Flower
         private List<FlowerInfo> _flowerList;
         private readonly int _userId;
         private int _totalPrice = 0;
-        public FlowerProductListing()
+        public FlowerProductListing(int userId)
         {
+            _userId = userId;
             _cartService = new CartService(new CartRepository());
             InitializeComponent();
             var context = new ShopContext();
@@ -36,6 +37,7 @@ namespace Shop_Flower
 
         private void LoadFlowers()
         {
+            FlowerProductList.ItemsSource = null;
             FlowerProductList.ItemsSource = _flowerInfoService.GetAllFlowers();
         }
 
@@ -107,6 +109,13 @@ namespace Shop_Flower
                 _cartService.AddToCart(item);
                 MessageBox.Show($"{selectedFlower.FlowerName} đã được thêm vào giỏ hàng.");
             }
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var result = _flowerInfoService.SearchFlower(FlowerNameSearch_txt.Text);
+            FlowerProductList.ItemsSource = null;
+            FlowerProductList.ItemsSource = result;
         }
     }
 }

@@ -10,14 +10,15 @@ namespace Shop_Flower
 {
     public partial class OrderWindow : Window
     {
-       
+        private readonly int _userId;
         private readonly decimal _totalPrice;
         private readonly OrderServices _orderServices;
 
         public OrderWindow(int userId, decimal totalPrice)
         {
             InitializeComponent();
-            
+
+            _userId = userId;
             _totalPrice = totalPrice;
             TotalPriceTextBlock.Text = _totalPrice.ToString("C");
 
@@ -45,7 +46,7 @@ namespace Shop_Flower
             // Tạo đối tượng Order và lưu vào cơ sở dữ liệu
             var newOrder = new Order
             {
-               
+                UserId = _userId,
                 PhoneNumber = phoneNumber,
                 PaymentMethod = paymentMethod,
                 DeliveryMethod = deliveryMethod,
@@ -62,7 +63,10 @@ namespace Shop_Flower
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving order: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error saving order: " + ex.Message + "\n\nInner Exception: " + ex.InnerException?.Message,
+                     "Error",
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Error);
             }
         }
     }
