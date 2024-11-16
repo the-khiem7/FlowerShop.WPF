@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Shop_Flower.BLL;
 using Shop_Flower.BLL.Services;
 using Shop_Flower.DAL.Entities;
 using Shop_Flower.DAL.Repository;
@@ -22,11 +23,15 @@ namespace Shop_Flower
     public partial class CartWindow : Window
     {
         private readonly ICartService _cartService;
+        private int _userId;
+        private decimal _totalPrice;
 
-        public CartWindow(ICartService cartService)
+        public CartWindow(ICartService cartService, int userid, decimal totalPrice)
         {
             InitializeComponent();
             _cartService = cartService;
+            _userId = userid;
+            _totalPrice = totalPrice;
             LoadCart();
         }
 
@@ -35,6 +40,15 @@ namespace Shop_Flower
             CartDataGrid.ItemsSource = null;
             CartDataGrid.ItemsSource = _cartService.GetCart().Items;
             TotalPriceTextBlock.Text = _cartService.GetCart().TotalPrice.ToString("C");
+        }
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         private void RemoveFromCartButton_Click(object sender, RoutedEventArgs e)
@@ -83,15 +97,21 @@ namespace Shop_Flower
                     CartDataGrid.SelectedIndex = selectedIndex;
                 }
                 else
-                { 
+                {
                     _cartService.RemoveFromCart(selectedItem.FlowerId);
-                     LoadCart();
+                    LoadCart();
                 }
             }
             else
             {
                 MessageBox.Show("Please select an item to decrease quantity.");
             }
+        }
+        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var orderWindow = new OrderWindow(_userId, _totalPrice);
+            orderWindow.Show();
+            Close();
         }
     }
 }
