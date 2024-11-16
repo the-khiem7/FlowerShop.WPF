@@ -117,5 +117,11 @@ namespace Shop_Flower
             FlowerProductList.ItemsSource = null;
             FlowerProductList.ItemsSource = result;
         }
+
+        private void btnOrderHistory_Click(object sender, RoutedEventArgs e)
+        {
+            var orderHistoryWindow = new OrderHistoryWindow(_userId);
+            orderHistoryWindow.Show();
+        }
     }
 }
