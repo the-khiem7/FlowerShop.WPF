@@ -84,10 +84,6 @@ namespace Shop_Flower
             this.Close();
         }
 
-        private void btnCategory_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void btnMyCart_Click(object sender, RoutedEventArgs e)
         {
@@ -117,6 +113,12 @@ namespace Shop_Flower
             var result = _flowerInfoService.SearchFlower(FlowerNameSearch_txt.Text);
             FlowerProductList.ItemsSource = null;
             FlowerProductList.ItemsSource = result;
+        }
+
+        private void btnOrderHistory_Click(object sender, RoutedEventArgs e)
+        {
+            var orderHistoryWindow = new OrderHistoryWindow(_userId);
+            orderHistoryWindow.Show();
         }
     }
 }

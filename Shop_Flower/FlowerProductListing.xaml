@@ -65,6 +65,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="110"/>
                         <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5"/>
@@ -111,7 +112,7 @@
                             Cursor="Hand"
                             Grid.Column="2"
                             Click="btnSearch_Click">
-                            
+
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="YellowGreen"/>
@@ -145,7 +146,7 @@
                             FontSize="18"
                             FontFamily="{StaticResource Montserrat}"
                             FontWeight="Black"
-                            Grid.Column="5"
+                            Grid.Column="6"
                             VerticalAlignment="Center"
                             Margin="5,0,5,2" Click="btnLogout_Click">
 
@@ -173,7 +174,44 @@
                         </Button.Template>
                     </Button>
                     <!--#endregion-->
-                    
+
+                    <!--#region Lịch sử đặt hàng -->
+                    <Button x:Name="btnOrderHistory"
+                            BorderThickness="0"
+                            Content="HISTORY"
+                            Foreground="White"
+                            FontSize="18"
+                            FontFamily="{StaticResource Montserrat}"
+                            Grid.Column="4"
+                            VerticalAlignment="Center"
+                            FontWeight="Black"
+                            Margin="5,0,5,2" Click="btnOrderHistory_Click">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Blue"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="YellowGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100" Height="25"
+                                        CornerRadius="15"
+                                        Margin="0,0,0,0"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <!--#endregion-->
+
                     <!--#region Đi đến giỏ hàng -->
                     <Button x:Name="btnMyCart"
                             BorderThickness="0"
@@ -181,7 +219,7 @@
                             Foreground="White"
                             FontSize="18"
                             FontFamily="{StaticResource Montserrat}"
-                            Grid.Column="4"
+                            Grid.Column="5"
                             VerticalAlignment="Center"
                             FontWeight="Black"
                             Margin="5,0,5,2" Click="btnMyCart_Click">
@@ -219,7 +257,7 @@
                             FontSize="16"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Grid.Column="6"
+                            Grid.Column="7"
                             Click="btnMinimize_Click">
 
                         <Button.Style>
@@ -255,7 +293,7 @@
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Grid.Column="7"
+                            Grid.Column="8"
                             Click="btnClose_Click">
 
                         <Button.Style>
@@ -330,7 +368,7 @@
                                             <TextBlock HorizontalAlignment="Center" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding FlowerDescription, UpdateSourceTrigger=PropertyChanged}" />
                                             <!--Giá cả-->
                                             <DockPanel>
-                                                <TextBlock FontSize="15" Margin="0 0 0 0" TextAlignment="Center" Width="90" Foreground="Black" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged,StringFormat=\{0\}$}" />
+                                                <TextBlock FontWeight="DemiBold" FontSize="15" Margin="0 0 0 0" TextAlignment="Center" Width="90" Foreground="Black" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged,StringFormat=\{0\}$}" />
                                             </DockPanel>
 
 

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Shop_Flower"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        WindowStyle="None" AllowsTransparency="True">
+        Background="Transparent" WindowStyle="None" AllowsTransparency="True">
     <Border CornerRadius="12">
         <Border CornerRadius="10"                    
             BorderThickness="2"
