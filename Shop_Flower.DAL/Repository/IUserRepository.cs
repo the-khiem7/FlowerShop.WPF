@@ -15,5 +15,7 @@ namespace Shop_Flower.DAL.Repository
         void UpdateUser(User user);
         void DeleteUser(int id);
         User getUserbyEmailAndPassword(string email, string password);
+
+        IEnumerable<User> SearchUsersByUsername(string username);
     }
 }

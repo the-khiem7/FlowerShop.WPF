@@ -21,5 +21,7 @@ public partial class Order
 
     public decimal? TotalPrice { get; set; }
 
+
+
     public virtual User? User { get; set; }
 }

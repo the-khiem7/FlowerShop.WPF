@@ -20,8 +20,8 @@ namespace Shop_Flower
 
         public App()
         {
-            var services = new ServiceCollection();
 
+<<<<<<< Updated upstream
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -51,6 +51,8 @@ namespace Shop_Flower
             services.AddTransient<OrderWindow>();
 
             _serviceProvider = services.BuildServiceProvider();
+=======
+>>>>>>> Stashed changes
         }
     }
 

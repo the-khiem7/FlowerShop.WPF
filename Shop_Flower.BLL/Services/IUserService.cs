@@ -11,5 +11,7 @@ namespace Shop_Flower.BLL
         void DeleteUser(int id);
 
         User getUserbyEmailAndPassword(string email, string password);
+
+        IEnumerable<User> SearchUsersByUsername(string username);
     }
 }

@@ -59,5 +59,12 @@ namespace Shop_Flower.DAL.Repository
         {
             return _context.Users.FirstOrDefault(c => c.Email == email && c.Password == password);
         }
+
+        public IEnumerable<User> SearchUsersByUsername(string username)
+        {
+            return _context.Users
+                           .Where(u => u.Username.Contains(username))
+                           .ToList();
+        }
     }
 }

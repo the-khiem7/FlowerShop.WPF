@@ -18,5 +18,7 @@ namespace Shop_Flower.BLL.Services
         void UpdateCategory(Category category);
 
         void AddCategory(Category category);
+
+        List<Category> SearchCategories(string keyword);
     }
 }

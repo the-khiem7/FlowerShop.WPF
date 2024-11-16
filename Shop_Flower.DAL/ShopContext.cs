@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 using Shop_Flower.DAL.Entities;
 
 namespace Shop_Flower.DAL;
@@ -25,14 +27,31 @@ public partial class ShopContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+<<<<<<< Updated upstream
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=(local);Database= Shop;UID=sa;PWD=123;TrustServerCertificate=True");
+=======
+
+        => optionsBuilder.UseSqlServer(GetConnectionString());
+
+
+    private string GetConnectionString()
+    {
+        IConfiguration config = new ConfigurationBuilder()
+      .SetBasePath(Directory.GetCurrentDirectory())
+      .AddJsonFile("appsettings.json", true, true)
+      .Build();
+        var strConn = config["ConnectionStrings:DefaultConnectionStringDB"];
+        return strConn;
+
+    }
+>>>>>>> Stashed changes
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__Category__D54EE9B41562A056");
+            entity.HasKey(e => e.CategoryId).HasName("PK__Category__D54EE9B452456207");
 
             entity.ToTable("Category");
 
@@ -44,7 +63,7 @@ public partial class ShopContext : DbContext
 
         modelBuilder.Entity<FlowerInfo>(entity =>
         {
-            entity.HasKey(e => e.FlowerId).HasName("PK__Flower_I__177E0A7E425101BF");
+            entity.HasKey(e => e.FlowerId).HasName("PK__Flower_I__177E0A7E46FFC00E");
 
             entity.ToTable("Flower_Info");
 
@@ -71,7 +90,7 @@ public partial class ShopContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__Orders__46596229A09820EE");
+            entity.HasKey(e => e.OrderId).HasName("PK__Orders__465962297AFE32A6");
 
             entity.Property(e => e.OrderId).HasColumnName("order_id");
             entity.Property(e => e.AddressId)
@@ -90,6 +109,7 @@ public partial class ShopContext : DbContext
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(20)
                 .HasColumnName("phone_number");
+
             entity.Property(e => e.TotalPrice)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total_price");
@@ -97,14 +117,14 @@ public partial class ShopContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Orders__user_id__403A8C7D");
+                .HasConstraintName("FK__Orders__status__403A8C7D");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__B9BE370FBC4978D9");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__B9BE370F10C72F6F");
 
-            entity.HasIndex(e => e.Username, "UQ__Users__F3DBC572E93BE602").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Users__F3DBC5720FB5A875").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Email)

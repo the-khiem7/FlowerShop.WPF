@@ -45,5 +45,15 @@ namespace Shop_Flower.BLL
         {
             return _userRepository.getUserbyEmailAndPassword(email, password);
         }
+
+        public IEnumerable<User> SearchUsersByUsername(string username)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+                return new List<User>();
+
+            return _userRepository.GetAllUsers()
+                                  .Where(user => user.Username.Contains(username, System.StringComparison.OrdinalIgnoreCase))
+                                  .ToList();
+        }
     }
 }

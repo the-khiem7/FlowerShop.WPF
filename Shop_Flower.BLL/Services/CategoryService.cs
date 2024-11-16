@@ -41,5 +41,16 @@ namespace Shop_Flower.BLL.Services
         {
             _categoryRepository.UpdateCategory(category);
         }
+
+        public List<Category> SearchCategories(string keyword)
+        {
+            using (var context = new ShopContext())
+            {
+
+                return context.Categories
+                    .Where(c => c.CategoryName.Contains(keyword.Trim()))
+                    .ToList();
+            }
+        }
     }
 }
