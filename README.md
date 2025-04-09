@@ -1,4 +1,4 @@
-# PRN Flower Shop
+# Flower Shop
 
 A WPF desktop application for managing a flower shop, featuring a modern UI and comprehensive shop management capabilities.
 
